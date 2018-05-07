@@ -1,6 +1,6 @@
 ---
 layout: post
-title: About
+title: Wei Yang
 permalink: /about/
 ---
 

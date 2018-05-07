@@ -10,7 +10,7 @@ categories: letecode
 ### 题目信息
 
 ```
-链接：(Longest Substring Without Repeating Characters)[https://leetcode.com/problems/longest-substring-without-repeating-characters/]
+链接：[Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/)
 来源：LeetCode
 难度：Medium
 描述：给定一个字符串，找到没有重复字符的最长子串，比如"pwwkew"，结果是3
