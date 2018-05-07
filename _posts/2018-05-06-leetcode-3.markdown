@@ -1,0 +1,60 @@
+---
+layout: post
+title:  "3. Longest Substring Without Repeating Characters 解题报告"
+date:   2018-05-06 11:20:00
+categories: letecode
+
+---
+
+
+### 题目信息
+
+```
+链接：(Longest Substring Without Repeating Characters)[https://leetcode.com/problems/longest-substring-without-repeating-characters/]
+来源：LeetCode
+难度：Medium
+描述：给定一个字符串，找到没有重复字符的最长子串，比如"pwwkew"，结果是3
+```
+
+### 解题思路
+1. 双指针法
+2. 用一个set记录以当前字符为止的无重复最长子串，实现log(N)的查找复杂度
+
+### 复杂度分析
+时间复杂度O(N logN)，空间复杂度O(N)
+
+### 细节处理
+1. 空串是0
+2. 单个字符串是1，所以不要漏掉遍历到字符串最末的时候对maxlen的更新
+
+
+### AC代码
+``` python
+class Solution(object):
+def lengthOfLongestSubstring(self, s):
+    """
+    :type s: str
+    :rtype: int
+    """
+    cs = set()
+    maxlen = 0
+    ind = 0
+    for c in s:
+        if c not in cs:
+            cs.add(c)
+            if len(cs) > maxlen:
+                maxlen = len(cs)
+        else:
+            while s[ind] != c:
+                cs.remove(s[ind])
+                ind += 1
+            ind += 1
+            
+    return maxlen
+```
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
+
