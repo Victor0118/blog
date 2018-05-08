@@ -74,7 +74,7 @@ class Solution(object):
         :type nums2: List[int]
         :rtype: float
         """
-        m, n = len(A), len(B)
+         m, n = len(A), len(B)
         if m > n:
             A, B, m, n = B, A, n, m
         if n == 0:
@@ -102,7 +102,9 @@ class Solution(object):
 
                 if i == m: min_of_right = B[j]
                 elif j == n: min_of_right = A[i]
-                else: min_of_right = min(A[i], B[
+                else: min_of_right = min(A[i], B[j])
+
+                return (max_of_left + min_of_right) / 2.0
 ```
 
 
