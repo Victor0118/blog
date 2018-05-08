@@ -1,0 +1,70 @@
+---
+layout: post
+title:  "4. Longest Substring Without Repeating Characters 解题报告"
+date:   2018-05-06 11:20:00
+categories: letecode
+
+---
+
+
+## 题目信息
+
+> * 链接：[Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/)
+> * 来源：LeetCode
+> * 难度：Hard
+> * 描述：给定两个排序数组，求中位数，要求复杂度在O(log(M+N))
+
+## 解题思路
+1. 二分法，总是两个数组各切掉较短数组长度的一半
+
+## 复杂度分析
+时间复杂度O(log(M+N))，空间复杂度O(1)
+
+## 细节处理
+1. 短数组长度为1(或者2)的时候，直接切掉长数组两边的元素即可
+2. 输入一个数组是空数组时，输出另一个数组的中位数即可
+
+## 心得体会
+1. LeetCode测试集比较弱，O(M+N)的算法也能过，另外没有一个数组是空数组，另一个数组很大的测试样例
+
+## AC代码
+``` python
+class Solution(object):
+    
+    def findMedianSortedArrays(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: float
+        """
+        if len(nums1) < len(nums2):
+            nums1, nums2 = nums2, nums1
+        print("nums1: {} nums2: {}".format(nums1, nums2))
+
+        if len(nums1) + len(nums2) < 8:
+            nums1.extend(nums2)
+            nums1 = sorted(nums1)
+            if len(nums1) % 2 == 1:
+                return nums1[int(len(nums1) / 2)]
+            else:
+                return (nums1[int(len(nums1) / 2)] + nums1[int(len(nums1) / 2) - 1]) / 2
+            
+        mid1 = int(len(nums1) / 2)
+        mid2 = int((len(nums2) - 1) / 2)
+        
+        if len(nums2) == 1:
+            return self.findMedianSortedArrays(nums1[mid1 - 1:len(nums1) - mid1 + 1], nums2)
+        elif len(nums2) == 2:
+            return self.findMedianSortedArrays(nums1[mid1 - 2:len(nums1) - mid1 + 2], nums2)
+        else:
+            if nums1[mid1] > nums2[mid2]:
+                return self.findMedianSortedArrays(nums1[:len(nums1) - mid2], nums2[mid2:])
+            else:
+                return self.findMedianSortedArrays(nums1[mid2:], nums2[:len(nums2) - mid2])
+```
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
+
