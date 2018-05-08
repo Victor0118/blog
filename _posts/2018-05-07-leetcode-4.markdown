@@ -28,6 +28,8 @@ categories: letecode
 1. LeetCode测试集比较弱，O(M+N)的算法也能过，另外没有一个数组是空数组，另一个数组很大的测试样例
 
 ## AC代码
+
+写的递归二分，也可以用while写迭代二分
 ``` python
 class Solution(object):
     
@@ -41,7 +43,7 @@ class Solution(object):
             nums1, nums2 = nums2, nums1
         print("nums1: {} nums2: {}".format(nums1, nums2))
 
-        if len(nums1) + len(nums2) < 8:
+        if len(nums1) + len(nums2) < 8 or len(nums2) == 0:
             nums1.extend(nums2)
             nums1 = sorted(nums1)
             if len(nums1) % 2 == 1:
@@ -61,6 +63,46 @@ class Solution(object):
                 return self.findMedianSortedArrays(nums1[:len(nums1) - mid2], nums2[mid2:])
             else:
                 return self.findMedianSortedArrays(nums1[mid2:], nums2[:len(nums2) - mid2])
+```
+
+## AC代码2
+``` python
+class Solution(object):
+    def findMedianSortedArrays(self, A, B):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: float
+        """
+        m, n = len(A), len(B)
+        if m > n:
+            A, B, m, n = B, A, n, m
+        if n == 0:
+            raise ValueError
+
+        imin, imax, half_len = 0, m, int((m + n + 1) / 2)
+        while imin <= imax:
+            i = int((imin + imax) / 2)
+            j = half_len - i
+            if i < m and B[j-1] > A[i]:
+                # i is too small, must increase it
+                imin = i + 1
+            elif i > 0 and A[i-1] > B[j]:
+                # i is too big, must decrease it
+                imax = i - 1
+            else:
+                # i is perfect
+
+                if i == 0: max_of_left = B[j-1]
+                elif j == 0: max_of_left = A[i-1]
+                else: max_of_left = max(A[i-1], B[j-1])
+
+                if (m + n) % 2 == 1:
+                    return max_of_left
+
+                if i == m: min_of_right = B[j]
+                elif j == n: min_of_right = A[i]
+                else: min_of_right = min(A[i], B[
 ```
 
 
