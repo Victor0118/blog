@@ -66,6 +66,11 @@ class Solution(object):
                 return self.findMedianSortedArrays(nums1[mid2:], nums2[:len(nums2) - mid2])
 ```
 
+## 解题思路2
+1. 二分法，只对短数组二分
+2. 如果两个数组一个有奇数个数，短数组切掉前i - 1个，长数组切掉前j(half_len - i) - 1个，剩下的数的最大数max_of_left就是中位数
+3. 如果两个数组一个有奇数个数，短数组切掉前i个，长数组切掉前j(half_len - i)个，剩下的数的最小数min_of_right和max_of_left的平均就是中位数
+
 ## AC代码2
 ``` python
 class Solution(object):
@@ -78,7 +83,7 @@ class Solution(object):
         m, n = len(A), len(B)
         if m > n:
             A, B, m, n = B, A, n, m
-            
+
         if n == 0:
             raise ValueError
 
