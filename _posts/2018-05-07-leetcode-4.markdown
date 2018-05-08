@@ -23,6 +23,7 @@ categories: letecode
 ## 细节处理
 1. 短数组长度为1(或者2)的时候，直接切掉长数组两边的元素即可
 2. 输入一个数组是空数组时，输出另一个数组的中位数即可
+3. 两个数组都比较短的时候直接拉直排序，这个8小一点不行(为了处理短数组长度为2的情况)
 
 ## 心得体会
 1. LeetCode测试集比较弱，O(M+N)的算法也能过，另外没有一个数组是空数组，另一个数组很大的测试样例
@@ -74,11 +75,16 @@ class Solution(object):
         :type nums2: List[int]
         :rtype: float
         """
-         m, n = len(A), len(B)
+        m, n = len(A), len(B)
         if m > n:
             A, B, m, n = B, A, n, m
-        if n == 0:
-            raise ValueError
+        if m == 0:
+            if n == 0:
+                raise ValueError
+            elif n % 2 == 0:
+                return (B[n / 2 - 1] + B[n / 2]) / 2
+            else:
+                return B[(n - 1) / 2]
 
         imin, imax, half_len = 0, m, int((m + n + 1) / 2)
         while imin <= imax:
