@@ -1,0 +1,71 @@
+---
+layout: post
+title:  "5. Longest Palindromic Substring 解题报告"
+date:   2018-05-08 10:00:00
+categories: letecode
+
+---
+
+
+## 题目信息
+
+> * 链接：[Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring/description/)
+> * 来源：LeetCode
+> * 难度：Medium
+> * 描述：给定一个字符串，找到最长回文子串
+
+## 解题思路
+1. 遍历每个字母，向两边搜索，考虑奇数长度回文串和偶数长度回文串两种情况
+
+## 复杂度分析
+时间复杂度O(N2)
+
+## 细节处理
+1. python字符串slice是取左闭右开区间
+
+## 心得体会
+1. 题目说明长度在1000以内，所以O($N^2$)足够了，似乎还有更快的方法，留待日后思考吧
+
+## AC代码
+
+``` python
+class Solution:
+    def longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        if len(s) < 2:
+            return s
+        
+        maxs = s[0]
+        for i, c in enumerate(s):
+            j = 1
+            while i - j >=0 and i + j < len(s):
+                if s[i - j] == s[i + j]:
+                    j += 1
+                else:
+                    break
+            
+            if 2 * j - 1 > len(maxs):
+                maxs = s[i - j + 1: i + j]
+            # print("# i: {}  j: {}  maxs:{}".format(i, j, maxs))
+            
+            j = 0
+            while i - j >=0 and i + j - 1 < len(s):
+                if s[i - j] == s[i + j - 1]:
+                    j += 1
+                else:
+                    break
+            if 2 * j - 2 > len(maxs):
+                maxs = s[i - j + 1:i + j - 1]
+            # print("* i: {}  j: {}  maxs:{}".format(i, j, maxs))
+
+        return maxs
+```
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
+
