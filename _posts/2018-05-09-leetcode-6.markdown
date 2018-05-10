@@ -1,0 +1,76 @@
+---
+layout: post
+title:  "6. ZigZag Conversion 解题报告"
+date:   2018-05-08 10:00:00
+categories: letecode
+
+---
+
+
+## 题目信息
+
+> * 链接：[ZigZag Conversion](https://leetcode.com/problems/zigzag-conversion/description/)
+> * 来源：LeetCode
+> * 难度：Medium
+> * 描述：给定一个字符串，顺序输出它的zigzag pattern的结果，比如输入字符串`PAYPALISHIRING`，它的zigzag pattern为
+```
+P   A   H   N
+A P L S I I G
+Y   I   R
+```
+则输出`PAHNAPLSIIGYIR`
+
+
+## 解题思路
+1. 找到循环节，比较简单
+
+## 复杂度分析
+时间复杂度O(N)
+
+## 细节处理
+1. 空串
+2. numRows大于s的长度（其实包含了空串）
+3. numRows为1
+
+
+## AC代码
+
+``` python
+class Solution:
+    def convert(self, s, numRows):
+        """
+        :type s: str
+        :type numRows: int
+        :rtype: str
+        """
+        
+        l = len(s)
+        if numRows == 1:
+            return s
+        res = ""
+        for i in range(min(l, numRows)):
+            c = i
+            res += s[c]
+            j1 = 2 * (numRows - i - 1) 
+            j2 = 2 * i
+            while True:
+                # print("j1: {}, j2: {}".format(j1, j2))
+                if j1 != 0:
+                    if c + j1 >= l:
+                        break
+                    c += j1
+                    res += s[c]
+                if j2 != 0:
+                    if c + j2 >= l:
+                        break
+                    c += j2
+                    res += s[c]
+                
+        return res
+```
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
+
