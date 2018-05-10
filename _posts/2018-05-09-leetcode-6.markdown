@@ -69,6 +69,33 @@ class Solution:
         return res
 ```
 
+## AC代码2
+
+``` python
+class Solution:
+    def convert(self, s, numRows):
+        """
+        :type s: str
+        :type numRows: int
+        :rtype: str
+        """
+        if not s: return ''
+        
+        if numRows == 1 or numRows >= len(s):
+            return s
+        res = [''] * numRows
+        id = 0
+        dir = -1
+        
+        for char in s:
+            res[id] += char
+            if id == 0 or id == numRows - 1:
+                dir *= -1
+            
+            id += dir
+        return ''.join(res)
+```
+
 
 [jekyll-docs]: https://jekyllrb.com/docs/home
 [jekyll-gh]:   https://github.com/jekyll/jekyll
