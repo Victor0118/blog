@@ -64,6 +64,11 @@ class Solution:
         return maxs
 ```
 
+## 优化算法
+可以实现O(N)复杂度的算法，供以后查阅
+[Manacher’s Algorithm – Linear Time Longest Palindromic Substring](https://www.geeksforgeeks.org/manachers-algorithm-linear-time-longest-palindromic-substring-part-1/)
+
+
 ## AC代码2
 
 ``` python
