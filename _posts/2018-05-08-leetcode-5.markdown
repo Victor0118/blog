@@ -64,6 +64,59 @@ class Solution:
         return maxs
 ```
 
+## AC代码2
+
+``` python
+class Solution:
+       
+    def longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        
+
+        if not s: return ''
+
+        n = len(s)
+        
+        ml = 1
+        ress = s[0]
+        
+        for i in range(n - 2):
+            
+            if s[i] == s[i + 2]:
+                l = i
+                r = i + 2                
+                while l >= 0 and r <= n - 1:
+                    # print(l, r)
+                    if s[l] == s[r]:
+                        l -= 1
+                        r += 1
+                    else:
+                        break
+                    # print(l, r)
+                curs = s[l + 1 : r]
+                if len(curs) > ml:
+                    ress, ml = curs, len(curs)
+                    
+        for i in range(n - 1):
+            if s[i] == s[i + 1]:
+                l = i
+                r = i + 1                
+                while l >= 0 and r <= n - 1:
+                    # print(l, r)
+                    if s[l] == s[r]:
+                        l -= 1
+                        r += 1
+                    else:
+                        break
+                    # print(l, r)
+                curs = s[l + 1 : r]
+                if len(curs) > ml:
+                    ress, ml = curs, len(curs)
+        return ress
+```
 
 [jekyll-docs]: https://jekyllrb.com/docs/home
 [jekyll-gh]:   https://github.com/jekyll/jekyll
