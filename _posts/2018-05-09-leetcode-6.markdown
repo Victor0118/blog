@@ -1,0 +1,36 @@
+---
+layout: post
+title:  "6. ZigZag Conversion 解题报告"
+date:   2018-05-09 10:42:00
+categories: letecode
+
+---
+
+
+## 题目信息
+
+> * 链接：[ZigZag Conversion](https://leetcode.com/problems/zigzag-conversion/description/)
+> * 来源：LeetCode
+> * 难度：Medium
+> * 描述：给定一个字符串，按照Z字型纵向重排，再依照横向读取顺序输出新的字符串
+
+## 解题思路
+
+## 复杂度分析
+
+## 细节处理
+
+## 心得体会
+
+## AC代码
+
+``` python
+class Solution:
+
+```
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
+
