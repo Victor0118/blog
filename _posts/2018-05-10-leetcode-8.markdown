@@ -1,0 +1,108 @@
+---
+layout: post
+title:  "8. String to Integer (atoi) 解题报告"
+date:   2018-05-10 10:45:00
+categories: letecode
+
+---
+
+
+## 题目信息
+
+> * 链接：[ZigZag Conversion](https://leetcode.com/problems/string-to-integer-atoi/description/)
+> * 来源：LeetCode
+> * 难度：Medium
+> * 描述：给定一个字符串，将其转换成十进制的整数，需要考虑各种情况，如空格，正负号，以及非法字符
+
+
+## 解题思路
+1. 一次遍历，从第一个非空字符算起，如为+、-，则记录符号，如为数字，则继续前移，否则跳出
+2. 遍历中遇到非数字的字符跳出，截取出数字并转换十进制
+
+## 复杂度分析
+时间复杂度O(N)
+
+## 细节处理
+1. 空串
+2. 只有正负号的情况
+3. 超出32位制的数字
+
+## 心得体会
+我一直觉得Python不适合用来实现这种底层的功能。这次的代码里用到了strip()来去除前置的空格，用到了isdigit()判断是否为数字，感觉还是偷懒了。如果有机会应该尝试一下用C++的代码从最底层实现包括转换为十进制的功能。
+
+
+## AC代码
+
+``` python
+class Solution:
+    def myAtoi(self, str):
+        """
+        :type str: str
+        :rtype: int
+        """       
+        str = str.strip()
+        if not str: return 0
+        
+        flag = 1
+        rstr = ''
+        
+        if str[0].isdigit() or str[0] == '+' or str[0] == '-':
+            if str[0] == '-':
+                flag = -1
+                str = str[1:]
+            elif str[0] == '+':
+                str = str[1:]
+            
+            for char in str:
+                if char.isdigit():
+                    rstr += char
+                else:
+                    break
+            
+            if rstr:
+                res = int(rstr) 
+            else:
+                return 0
+            
+            if res > 2147483647 and flag == 1:
+                res = 2147483647
+            if res > 2147483648 and flag == -1:
+                res = 2147483648
+            
+            return res * flag
+        else:
+            return 0
+```
+
+## AC代码2
+
+``` python
+class Solution:
+    def convert(self, s, numRows):
+        """
+        :type s: str
+        :type numRows: int
+        :rtype: str
+        """
+        if not s: return ''
+        
+        if numRows == 1 or numRows >= len(s):
+            return s
+        res = [''] * numRows
+        id = 0
+        dir = -1
+        
+        for char in s:
+            res[id] += char
+            if id == 0 or id == numRows - 1:
+                dir *= -1
+            
+            id += dir
+        return ''.join(res)
+```
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
+
