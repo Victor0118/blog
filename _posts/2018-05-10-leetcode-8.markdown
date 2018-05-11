@@ -9,7 +9,7 @@ categories: letecode
 
 ## 题目信息
 
-> * 链接：[ZigZag Conversion](https://leetcode.com/problems/string-to-integer-atoi/description/)
+> * 链接：[String to Integer (atoi)](https://leetcode.com/problems/string-to-integer-atoi/description/)
 > * 来源：LeetCode
 > * 难度：Medium
 > * 描述：给定一个字符串，将其转换成十进制的整数，需要考虑各种情况，如空格，正负号，以及非法字符
@@ -78,27 +78,48 @@ class Solution:
 
 ``` python
 class Solution:
-    def convert(self, s, numRows):
+    def myAtoi(self, str):
         """
-        :type s: str
-        :type numRows: int
-        :rtype: str
+        :type str: str
+        :rtype: int
         """
-        if not s: return ''
-        
-        if numRows == 1 or numRows >= len(s):
-            return s
-        res = [''] * numRows
-        id = 0
-        dir = -1
-        
-        for char in s:
-            res[id] += char
-            if id == 0 or id == numRows - 1:
-                dir *= -1
-            
-            id += dir
-        return ''.join(res)
+        INT_MIN = - 2 ** 31
+        INT_MAX = 2 ** 31 - 1
+        see_num_or_sign = False
+        see_num = False
+        num = 0
+        negative = False
+        digits = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+        for c in str:
+            if not see_num_or_sign:
+                if c == " ":
+                    continue
+                elif c in digits:
+                    see_num_or_sign = True
+                    see_num = True
+                    num = num * 10 + int(c)
+                elif c == "-":
+                    see_num_or_sign = True
+                    negative = True
+                elif c == "+":
+                    see_num_or_sign = True
+                else:
+                    return 0
+            else:
+                if c in digits:
+                    num = num * 10 + int(c)
+                    see_num = True
+                elif see_num:
+                    break
+                else:
+                    return 0
+        if negative:
+            num = -num
+        if num > INT_MAX:
+            num = INT_MAX
+        if num < INT_MIN:
+            num = INT_MIN
+        return num
 ```
 
 

@@ -26,7 +26,7 @@ github_username:  Victor0118
 # Build settings
 markdown: kramdown
 # theme: tale
-theme: Minima
+theme: minima
 plugins:
   - jekyll-feed
 
