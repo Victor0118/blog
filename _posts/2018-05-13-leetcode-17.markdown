@@ -47,6 +47,7 @@ class Solution:
 代码基本完全一样，强行保存一下，没什么价值
 
 ## AC代码2
+```
 class Solution:
     def letterCombinations(self, digits):
         """
@@ -80,6 +81,8 @@ class Solution:
         
         # print(res)
         return res
+
+```
 
 [jekyll-docs]: https://jekyllrb.com/docs/home
 [jekyll-gh]:   https://github.com/jekyll/jekyll
