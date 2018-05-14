@@ -1,0 +1,54 @@
+---
+layout: post
+title:  "17. Letter Combinations of a Phone Number 解题报告"
+categories: leetcode
+---
+
+
+## 题目信息
+
+> * 链接：[Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/description/)
+> * 来源：LeetCode
+> * 难度：Medium
+> * 描述：根据输入数字输出所有可能是9键盘字母组合
+
+## 解题思路
+1. 宽搜遍历所有情况
+
+## 复杂度分析
+时间复杂度O(3^N), N为输入数字个数
+
+## 细节处理
+1. 不能用递归函数，否则会爆栈
+2. 输入为空串
+
+## AC代码
+
+``` python
+class Solution:
+    def letterCombinations(self, digits):
+        """
+        :type digits: str
+        :rtype: List[str]
+        """
+        if digits == "":
+            return []
+        ans = [""]
+        digit2char = {"2":"abc", "3":"def", "4":"ghi", "5":"jkl", "6":"mno", "7":"pqrs", "8":"tuv", "9":"wxyz"}
+        for d in digits:
+            ans2 = []
+            for a in ans:
+                for c in digit2char[d]:
+                    ans2.append(a+c)
+            ans = ans2
+        return ans
+```
+
+
+## AC代码2
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
+
