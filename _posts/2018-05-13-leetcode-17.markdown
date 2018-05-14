@@ -43,10 +43,43 @@ class Solution:
             ans = ans2
         return ans
 ```
-
+## 补充说明
+代码基本完全一样，强行保存一下，没什么价值
 
 ## AC代码2
-
+class Solution:
+    def letterCombinations(self, digits):
+        """
+        :type digits: str
+        :rtype: List[str]
+        """
+        
+        if not digits: return []
+            
+        m = {2: ['a', 'b', 'c'],
+             3: ['d', 'e', 'f'],
+             4: ['g', 'h', 'i'],
+             5: ['j', 'k', 'l'],
+             6: ['m', 'n', 'o'],
+             7: ['p', 'q', 'r', 's'],
+             8: ['t', 'u', 'v'],
+             9: ['w', 'x', 'y', 'z']}
+        
+        res = ['']
+        
+        for digit in digits:
+            key = int(digit)
+            letters = m[key]
+            save = []
+            for curs in res:
+                for letter in letters:
+                    tem = curs + letter
+                    save.append(tem)
+                    
+            res = save
+        
+        # print(res)
+        return res
 
 [jekyll-docs]: https://jekyllrb.com/docs/home
 [jekyll-gh]:   https://github.com/jekyll/jekyll
