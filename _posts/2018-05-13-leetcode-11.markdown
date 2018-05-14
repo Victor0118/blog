@@ -1,0 +1,61 @@
+---
+layout: post
+title:  "11. Container With Most Water 解题报告"
+date:   2018-05-08 10:00:00
+categories: letecode
+
+---
+
+
+## 题目信息
+
+> * 链接：[Container With Most Water](https://leetcode.com/problems/container-with-most-water/description/)
+> * 来源：LeetCode
+> * 难度：Medium
+> * 描述：给一串坐标，往任意两个点到x轴的垂涎和x轴形成的槽里面装水，求最多能装多少水
+
+## 解题思路
+1. 双指针法，从两边往中间遍历，每次移动较短的栏
+
+## 复杂度分析
+时间复杂度O(N)
+
+## 细节处理
+
+## 心得体会
+1. 题目设计很精巧，应该也有些变式，像是智商题
+
+## AC代码
+
+``` python
+class Solution:
+    def maxArea(self, height):
+        """
+        :type height: List[int]
+        :rtype: int
+        """
+        a = 0 
+        b = len(height) - 1
+        maxWater = 0
+        while a < b:
+            w = min(height[a], height[b]) * (b - a)
+            if w > maxWater:
+                maxWater = w
+            if height[a] < height[b]:
+                a += 1
+            else:
+                b -= 1
+        return maxWater
+```
+
+
+## AC代码2
+
+``` python
+
+```
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
+
