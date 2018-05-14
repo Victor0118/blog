@@ -1,0 +1,63 @@
+---
+layout: post
+title:  "13. Integer to Roman 解题报告"
+date:   2018-05-08 10:00:00
+categories: letecode
+
+---
+
+
+## 题目信息
+
+> * 链接：[Integer to Roman](https://leetcode.com/problems/integer-to-roman/description/)
+> * 来源：LeetCode
+> * 难度：Medium
+> * 描述：把4000以内的数字转化成罗马数字
+
+## 解题思路
+1. 分类4, 9处理就好
+
+## 复杂度分析
+时间复杂度O(length of integer)
+
+## 细节处理
+1. python3要用int()强制转化除法的结果为整数，python3可以对浮点数取余
+
+## AC代码
+
+``` python
+class Solution:
+    def intToRoman(self, num):
+        """
+        :type num: int
+        :rtype: str
+        """
+        res = ""
+        one = ["I", "X", "C", "M"]
+        five = ["V", "L", "D"]
+        i = 0
+        while num > 0:
+            n = num % 10
+            res_tmp = ""
+            if n == 4:
+                res_tmp = one[i] + five[i]
+            elif n == 9:
+                res_tmp = one[i] + one[i+1]
+            elif n >= 5:
+                res_tmp = five[i] + "".join([one[i] for j in range(n - 5)])
+            else:
+                res_tmp = "".join([one[i] for j in range(n)])
+            res = res_tmp + res
+            i += 1
+            num = int(num / 10)
+        return res
+```
+
+
+## AC代码2
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
+
