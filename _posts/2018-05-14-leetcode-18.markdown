@@ -1,61 +1,62 @@
 ---
 layout: post
-title:  "19. Remove Nth Node From End of List 解题报告"
+title:  "18. 4Sum 解题报告"
+date:   2018-05-14 11:10:00
 categories: leetcode
 ---
 
 
 ## 题目信息
 
-> * 链接：[Remove Nth Node From End of List](https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/)
+> * 链接：[4Sum](https://leetcode.com/problems/4sum/description/)
 > * 来源：LeetCode
 > * 难度：Medium
 > * 描述：
+给定一个无序的List以及一个target目标， 找出不重复的四个数字使它们的和为给定目标
 
 ## 解题思路
-1. 
+1. 通过两层循环，遍历找到List里所有可能的pair，并以它们的subsum为Key，把所有的pair分类
+2. 通过遍历subsum，寻找target - subsum是不是也作为Key存在，若存在，则把两类下面的pair进行配对
+3. 注意去重
 
 ## 复杂度分析
+时间复杂度为O(N^3)， 第一步需要两层循环，第二步需要三层循环
 
 ## 细节处理
-1. 
+1. 寻找pair的时候注意j的范围为[i + 1, len(nums)), 而不是从i开始，否则会有重复抽取
+2. 为了避免重复，在存储pair的时候，需要存储他们的index，而不是数字本身
 
 ## AC代码
 
 ``` python
-# Definition for singly-linked list.
-# class ListNode(object):
-#     def __init__(self, x):
-#         self.val = x
-#         self.next = None
-
-class Solution(object):
-    def removeNthFromEnd(self, head, n):
+class Solution:
+    def fourSum(self, nums, target):
         """
-        :type head: ListNode
-        :type n: int
-        :rtype: ListNode
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[List[int]]
         """
+        res = set()
+        dict_pair = dict()
+        for i in range(len(nums)):
+            for j in range(i + 1, len(nums)):
+                subsum = nums[i] + nums[j]
+                if subsum in dict_pair.keys():
+                    dict_pair[subsum].append((i, j))
+                else:
+                    dict_pair[subsum] = [(i, j)]
         
-        c = head
-        s = head
-        count = 0
-        
-        
-        while c != None:
-            c = c.next
-            count += 1
-            if count > n + 1:
-                s = s.next
-        
-        if count == n:
-            return head.next
-        
-        s.next = s.next.next
-        return head
-        
-        
-
+        for sum1 in dict_pair.keys():
+            temp = []
+            sum2 = target - sum1
+            if sum2 in dict_pair.keys():
+                for (m,n) in dict_pair[sum1]:
+                    for (x,y) in dict_pair[sum2]:
+                        if m != x and m != y and n != x and n != y:
+                            l = [nums[m], nums[n], nums[x], nums[y]]
+                            l.sort()
+                            res.add(tuple(l))
+        return list(res)
 ```
 
 

@@ -1,0 +1,67 @@
+---
+layout: post
+title:  "19. Remove Nth Node From End of List 解题报告"
+date:   2018-05-14 10:0:00
+categories: leetcode
+---
+
+
+## 题目信息
+
+> * 链接：[Remove Nth Node From End of List](https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/)
+> * 来源：LeetCode
+> * 难度：Medium
+> * 描述：
+
+## 解题思路
+1. 
+
+## 复杂度分析
+
+## 细节处理
+1. 
+
+## AC代码
+
+``` python
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def removeNthFromEnd(self, head, n):
+        """
+        :type head: ListNode
+        :type n: int
+        :rtype: ListNode
+        """
+        
+        c = head
+        s = head
+        count = 0
+        
+        
+        while c != None:
+            c = c.next
+            count += 1
+            if count > n + 1:
+                s = s.next
+        
+        if count == n:
+            return head.next
+        
+        s.next = s.next.next
+        return head
+        
+        
+
+```
+
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
+
