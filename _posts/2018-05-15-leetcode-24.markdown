@@ -1,0 +1,71 @@
+---
+layout: post
+title:  "24. Swap Nodes in Pairs 解题报告"
+categories: leetcode
+---
+
+
+## 题目信息
+
+> * 链接：[Swap Nodes in Pairs](https://leetcode.com/problems/swap-nodes-in-pairs/description/)
+> * 来源：LeetCode
+> * 难度：Medium
+> * 描述：交换链表每两个相邻的结点，要求空间复杂度O(1)，不能修改结点内容
+
+## 解题思路
+1. 交换当前两个结点，根据之后是否还有两个以上结点来决定当前第一个结点的下一个结点，注意判断之后的结点可能有0个，1个或者2个以上
+
+## 复杂度分析
+
+## 细节处理
+1. 空链表
+2. 单结点链表
+3. 奇数结点链表
+
+## AC代码
+
+``` python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def swapPairs(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        if head == None:
+            return
+        if head.next == None:
+            return head
+        ret = head.next
+        a = head
+        b = a.next
+        while True:
+            if b.next != None and b.next.next != None:
+                tmp = b.next
+                a.next = b.next.next
+                b.next = a
+                a = tmp
+                b = tmp.next
+            elif b.next != None:
+                a.next = b.next
+                b.next = a
+                break
+            else:
+                b.next = a
+                a.next = None
+                break
+        return ret
+
+```
+
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
+
