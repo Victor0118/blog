@@ -1,0 +1,61 @@
+---
+layout: post
+title:  "20. Generate Parentheses 解题报告"
+date:   2018-05-15 10:20:00
+categories: leetcode
+---
+
+
+## 题目信息
+
+> * 链接：[Generate Parentheses](https://leetcode.com/problems/generate-parentheses/description/)
+> * 来源：LeetCode
+> * 难度：Medium
+> * 描述：给定一个数字n，生成仅包含n组括号，且符合符号规则的所有可能的组合
+
+## 解题思路
+1. 因为组合字符串的长度确定为2n，可以通过一次遍历，针对每个位置分别插入"("，或")"
+2. 由于")"一定要在"("的后面，在插入")"是需要判断是否有对应的"("
+3. 由于给定的括号数有限，需要关注"("的限额是不是已经用完
+
+## 复杂度分析
+因为每个位置可以有"("和")"两种情况，时间复杂度应为O(2^N)
+
+## 细节处理
+1. 计数"("， 每插入一个"("， 计数+1，如果插入")", 计数-1。
+
+## AC代码
+
+``` python
+class Solution:
+    def generateParenthesis(self, n):
+        """
+        :type n: int
+        :rtype: List[str]
+        """
+        d = [[1, 1,'(']]
+        
+        for i in range(1, n*2):
+            temp = []
+            for l in d:
+                if l[1] >= n:
+                    temp.append([l[0]- 1, l[1], l[2] + ')'])
+                elif l[0] == 0:
+                    temp.append([l[0] + 1, l[1] + 1, l[2] + '('])
+                else:
+                    temp.append([l[0] + 1, l[1] + 1, l[2] + '('])
+                    temp.append([l[0] - 1, l[1], l[2] + ')'])
+            d = temp
+        
+        res = []
+        for r in d: res.append(r[2])
+            
+        return res
+```
+
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
+
