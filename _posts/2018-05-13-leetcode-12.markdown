@@ -50,6 +50,7 @@ class Solution:
             num = int(num / 10)
         return res
 ```
+
 ## 思路整理
 目前的代码是按结果分为[0, 4), 4, [5, 9), 9 四种情况分析，接近于提取规律的写法。但是鉴于本身数字范围不算很大，应该可以直接通过查表的方式实现。例如： Is = [I, II, III, IV, V, VI, VII, VIII, IX]
 Xs = [X, XX, XXX, XL, L, LX, LXX, LXXX, XC]
