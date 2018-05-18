@@ -1,0 +1,89 @@
+---
+layout: post
+title:  "19. Remove Nth Node From End of List 解题报告"
+date:   2018-05-17 10:00:00
+categories: leetcode
+---
+
+
+## 题目信息
+
+> * 链接：[Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/description/)
+> * 来源：LeetCode
+> * 难度：Medium
+> * 描述：
+
+## 解题思路
+1. 二分法
+2. 分类讨论left，mid和right三个数的关系以及mid与target之间的关系
+
+## 复杂度分析
+时间复杂度O(logN)，空间复杂度O(1)
+
+## 细节处理
+1. 空串
+2. target是第一个或者最后一个数
+3. 二分的末枝
+
+## AC代码
+
+``` python
+class Solution:
+    def search(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        a = 0
+        b = len(nums) - 1
+        if len(nums) == 0:
+            return -1
+        if nums[a] == target:
+            return a
+        if nums[b] == target:
+            return b
+        while a <= b:
+            if b - a < 2:
+                if nums[a] == target:
+                    return a
+                if nums[b] == target:
+                    return b
+                return -1
+            mid = int((a + b) / 2)
+            if target == nums[mid]:
+                return mid
+            if nums[a] < nums[b]:
+                if target < nums[mid]:
+                    b = mid
+                else:
+                    a = mid
+            else:
+                if nums[a] < nums[mid]:
+                    if nums[a] < target:
+                        if target < nums[mid]:
+                            b = mid
+                        else:
+                            a = mid
+                    else:
+                        a = mid
+                else:
+                    if nums[a] > target:
+                        if target < nums[mid]:
+                            b = mid
+                        else:
+                            a = mid
+                    else:
+                        b = mid
+                
+        return -1
+        
+
+```
+
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
+
