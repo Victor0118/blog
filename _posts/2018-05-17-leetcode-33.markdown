@@ -11,7 +11,7 @@ categories: leetcode
 > * 链接：[Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/description/)
 > * 来源：LeetCode
 > * 难度：Medium
-> * 描述：
+> * 描述：对一个排序好的数组做旋转之后，在其中进行查找，存在返回下标，不存在返回-1
 
 ## 解题思路
 1. 二分法
@@ -24,6 +24,7 @@ categories: leetcode
 1. 空串
 2. target是第一个或者最后一个数
 3. 二分的末枝
+4. 可能一开始就是排序好的没用旋转
 
 ## 心得体会
 python的while，if啥的最好不要迭代太深，没有高亮基本很难对齐，一开始return就写在while里面了。。。
