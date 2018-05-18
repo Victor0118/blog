@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "19. Remove Nth Node From End of List 解题报告"
+title:  "33. Remove Nth Node From End of List 解题报告"
 date:   2018-05-17 10:00:00
 categories: leetcode
 ---
@@ -24,6 +24,9 @@ categories: leetcode
 1. 空串
 2. target是第一个或者最后一个数
 3. 二分的末枝
+
+## 心得体会
+python的while，if啥的最好不要迭代太深，没有高亮基本很难对齐，一开始return就写在while里面了。。。
 
 ## AC代码
 
