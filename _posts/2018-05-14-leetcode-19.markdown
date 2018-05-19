@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "19. Remove Nth Node From End of List 解题报告"
-date:   2018-05-14 10:0:00
+date:   2018-05-14 10:00:00
 categories: leetcode
 ---
 
