@@ -11,11 +11,11 @@ categories: leetcode
 > * 链接：[Search for a Range](https://leetcode.com/problems/search-for-a-range/description/)
 > * 来源：LeetCode
 > * 难度：Medium
-> * 描述：
+> * 描述：查找一个不严格递增的数组，存在返回下标区间，不存在返回[-1, -1]
 
 ## 解题思路
-1. 查找一个不严格递增的数组，存在返回下标区间，不存在返回[-1, -1]
-2. 先查start，再查end，查start的时候保证left一定不等于target，查end的时候保证right一定不等于target，分析清楚这个了有利于二分末枝判断
+1. 二分法，先查start，再查end
+2. 查start的时候保证left一定不等于target，查end的时候保证right一定不等于target，分析清楚这个了有利于二分末枝判断
 
 ## 复杂度分析
 时间复杂度O(logN)，空间复杂度O(1)
