@@ -1,0 +1,118 @@
+---
+layout: post
+title:  "37. Sudoku Solver 解题报告"
+date:   2018-05-19 23:00:00
+categories: leetcode
+---
+
+
+## 题目信息
+
+> * 链接：[Sudoku Solver](https://leetcode.com/problems/sudoku-solver/description/
+> * 来源：LeetCode
+> * 难度：Medium
+> * 描述：in-place地补全9\*9数组，保证有且仅有一个解
+
+## 解题思路
+1. 深度优先搜索
+
+## 复杂度分析
+指数级，这个题里面剪枝很多，具体复杂度应该取决于输入
+
+## 细节处理
+1. 3\*3的block的判重处理
+
+## 细节处理
+1. python list的remove(value)函数要value存在才能调用
+2. 第一个版本提交发现递归深度爆炸，思前想后觉得这个事情不可能，又不得不在事实面前怀疑自己是不是没学到位，于是用stack写了一个模拟递归，发现是一个等号写成了不等号，于是修改，两种方法都可以过。
+3. 用stack模拟递归不容易，要考虑什么进栈，什么时候出栈，怎么恢复到入栈时的状态等等
+
+## AC代码
+
+``` python
+class Solution:
+    def check(self, board, a, b):
+        candidates = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+        for i in range(9):
+            if board[a][i] in candidates:
+                candidates.remove(board[a][i])
+            if board[i][b] in candidates:
+                candidates.remove(board[i][b])
+        row = int(a/3)
+        col = int(b/3)
+        for i in range(3):
+            for j in range(3):
+                if board[row * 3 + i][col * 3 + j] in candidates:
+                    candidates.remove(board[row * 3 + i][col * 3 + j])
+                
+        return candidates
+     
+    def solve(self, board):
+        """
+        :type board: List[List[str]]
+        :rtype: void Do not return anything, modify board in-place instead.
+        """
+        for i in range(9):
+            for j in range(9):
+                if board[i][j] == ".":
+                    cs = self.check(board, i, j)
+                    if len(cs) == 0:
+                        return False
+                    for c in cs:
+                        board[i][j] = c
+                        if self.solve(board):
+                            return True
+                        # 这句代码不能删掉，不一定会被下一次迭代替换（因为可能这就是循环的最后一次迭代）
+                        board[i][j] = "."
+                    return False
+        return True
+    
+    def solveSudoku(self, board):
+        """
+        :type board: List[List[str]]
+        :rtype: void Do not return anything, modify board in-place instead.
+        """
+        self.solve(board)
+        return 
+    
+    def solveSudoku_stack_version(self, board):
+        """
+        :type board: List[List[str]]
+        :rtype: void Do not return anything, modify board in-place instead.
+        """
+        stack = []
+        i = 0
+        j = 0
+        while i < 9:
+            while j < 9:
+                if board[i][j] == ".":
+                    cs = self.check(board, i, j)
+                    if len(cs) == 0:
+                        a, b, d = stack[-1]
+                        while board[a][b] == d:
+                            board[a][b] = "."
+                            if len(stack) == 0:
+                                return 
+                            stack.pop()
+                            a, b, d = stack[-1]
+                        i = a 
+                        j = b
+                        board[a][b] = d 
+                        
+                    for c in cs:
+                        board[i][j] = c
+                        stack.append((i, j, c))
+                j += 1
+            i += 1
+            j = 0
+                            
+        return 
+
+```
+
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
+
