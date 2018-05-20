@@ -49,10 +49,6 @@ class Solution:
         return candidates
      
     def solve(self, board):
-        """
-        :type board: List[List[str]]
-        :rtype: void Do not return anything, modify board in-place instead.
-        """
         for i in range(9):
             for j in range(9):
                 if board[i][j] == ".":
@@ -73,11 +69,11 @@ class Solution:
         :type board: List[List[str]]
         :rtype: void Do not return anything, modify board in-place instead.
         """
-        # 不能单用solve()或者solve_stack_version()，LeetCode说了返回空，就不能返回bool
+        # 不能单用solve()，LeetCode说了返回None，就不能返回bool
         self.solve(board)
         return 
     
-    def solve_stack_version(self, board):
+    def solveSudoku_stack_version(self, board):
         """
         :type board: List[List[str]]
         :rtype: void Do not return anything, modify board in-place instead.
