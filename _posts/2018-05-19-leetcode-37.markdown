@@ -26,7 +26,7 @@ categories: leetcode
 1. python list的remove(value)函数要value存在才能调用
 2. 第一个版本提交发现递归深度爆炸，思前想后觉得这个事情不可能，又不得不在事实面前怀疑自己是不是没学到位，于是用stack写了一个模拟递归，发现是一个等号写成了不等号，于是修改，两种方法都可以过。
 3. 用stack模拟递归不容易，要考虑什么进栈，什么时候出栈，怎么恢复到入栈时的状态等等
-4. 虽然是Hard，但感觉是easy
+4. 虽然是Hard，但感觉是easyg
 
 ## AC代码
 
@@ -73,10 +73,11 @@ class Solution:
         :type board: List[List[str]]
         :rtype: void Do not return anything, modify board in-place instead.
         """
+        # 不能单用solve()或者solve_stack_version()，LeetCode说了返回空，就不能返回bool
         self.solve(board)
         return 
     
-    def solveSudoku_stack_version(self, board):
+    def solve_stack_version(self, board):
         """
         :type board: List[List[str]]
         :rtype: void Do not return anything, modify board in-place instead.
