@@ -10,7 +10,7 @@ categories: leetcode
 
 > * 链接：[Sudoku Solver](https://leetcode.com/problems/sudoku-solver/description/
 > * 来源：LeetCode
-> * 难度：Medium
+> * 难度：Hard
 > * 描述：in-place地补全9\*9数组，保证有且仅有一个解
 
 ## 解题思路
@@ -26,6 +26,7 @@ categories: leetcode
 1. python list的remove(value)函数要value存在才能调用
 2. 第一个版本提交发现递归深度爆炸，思前想后觉得这个事情不可能，又不得不在事实面前怀疑自己是不是没学到位，于是用stack写了一个模拟递归，发现是一个等号写成了不等号，于是修改，两种方法都可以过。
 3. 用stack模拟递归不容易，要考虑什么进栈，什么时候出栈，怎么恢复到入栈时的状态等等
+4. 虽然是Hard，但感觉是easy
 
 ## AC代码
 
