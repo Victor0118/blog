@@ -1,0 +1,84 @@
+---
+layout: post
+title:  "39. Combination Sum 解题报告"
+date:   2018-05-20 10:00:00
+categories: leetcode
+---
+
+
+## 题目信息
+
+> * 链接：[Combination Sum](https://leetcode.com/problems/combination-sum/description/)
+> * 来源：LeetCode
+> * 难度：Medium
+> * 描述：给一个数字集合和一个目标数，所有从数字集合里面取数，可以重复取，求数字和等于目标数的所有组合
+
+```
+Input: candidates = [2,3,6,7], target = 7,
+A solution set is:
+[
+  [7],
+  [2,2,3]
+]
+```
+## 解题思路
+1. 深度优先搜索+回溯
+
+## 复杂度分析
+
+## 细节处理
+1. python的list是某种意义上的引用传递，list[:]会copy整个list，如果list里面有Object最好用deepcopy
+2. 
+
+## 心得体会
+1. python的参数传递很有意思，有和java相似的地方，也有独特的地方，留待总结
+2. dfs其实是按照递推公式的写法写的，这个不知是否是普遍做法
+3. 背包问题的一种
+
+## AC代码
+
+``` python
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    
+    def dfs(self, candidates, target, sol):
+        if target == 0:
+            self.res.append(sol[:])
+            return 
+        if target < 0:
+            return 
+        if len(candidates) == 0:
+            return
+        if len(candidates) > 1: 
+            self.dfs(candidates[1:], target, sol)
+        
+        target -= candidates[0]
+        sol.append(candidates[0])
+        self.dfs(candidates, target, sol)
+        sol.remove(candidates[0])
+            
+    def combinationSum(self, candidates, target):
+        """
+        :type candidates: List[int]
+        :type target: int
+        :rtype: List[List[int]]
+        """
+        self.res = []
+        self.dfs(candidates, target, [])
+        return self.res
+                
+        
+
+```
+
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
+
