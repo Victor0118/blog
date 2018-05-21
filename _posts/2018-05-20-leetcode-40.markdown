@@ -1,0 +1,81 @@
+---
+layout: post
+title:  "40. Combination Sum II 解题报告"
+date:   2018-05-20 10:00:00
+categories: leetcode
+---
+
+
+## 题目信息
+
+> * 链接：[Combination Sum II](https://leetcode.com/problems/combination-sum-ii/description/)
+> * 来源：LeetCode
+> * 难度：Medium
+> * 描述：给一个数字集合和一个目标数，所有从数字集合里面取数，不可以重复取，求数字和等于目标数的所有组合
+
+```
+Input: candidates = [10,1,2,7,6,1,5], target = 8,
+A solution set is:
+[
+  [1, 7],
+  [1, 2, 5],
+  [2, 6],
+  [1, 1, 6]
+]
+```
+
+## 解题思路
+深度优先搜索+回溯
+
+## 复杂度分析
+时间复杂度和39题一样，空间复杂度因为我复制了list所以可能有点高，有待改进
+
+## 细节处理
+1. 因为是不可以重复取，所以每次都要remove掉选取的元素，如果不取，则remove掉所有和该值相同的元素（为了避免重复sol）
+2. 感觉这个递归写法空间用得比较多，但是LeetCode没报错
+
+## AC代码
+
+``` python
+class Solution(object):
+    def combinationSum2(self, candidates, target):
+        """
+        :type candidates: List[int]
+        :type target: int
+        :rtype: List[List[int]]
+        """
+        self.res = []
+        self.dfs(candidates, target, [])
+        return self.res
+    
+    def dfs(self, candidates, target, sol):
+        if target == 0:
+            self.res.append(sol[:])
+            return 
+        if target < 0:
+            return 
+        if len(candidates) == 0:
+            return
+        
+        c0 = candidates[0]
+        if len(candidates) > 1: 
+            candidates2 = candidates[:]
+            while c0 in candidates2:
+                candidates2.remove(c0)
+            self.dfs(candidates2, target, sol)
+        
+        target -= c0
+        sol.append(c0)
+        candidates.remove(c0)
+        self.dfs(candidates, target, sol)
+        sol.remove(c0)
+        
+ 
+```
+
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
+
