@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "47. Permutations 解题报告"
+title:  "47. Permutations II 解题报告"
 date:   2018-05-21 23:00:00
 categories: leetcode
 ---
@@ -21,6 +21,7 @@ categories: leetcode
 
 ## 细节处理
 1. 注意python的参数传递
+2. 在46上一个小改动
 
 ## AC代码
 
