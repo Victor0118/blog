@@ -38,12 +38,6 @@ A solution set is:
 ## AC代码
 
 ``` python
-# Definition for singly-linked list.
-# class ListNode(object):
-#     def __init__(self, x):
-#         self.val = x
-#         self.next = None
-
 class Solution(object):
     
     def dfs(self, candidates, target, sol):
@@ -71,9 +65,53 @@ class Solution(object):
         self.res = []
         self.dfs(candidates, target, [])
         return self.res
-                
-        
+```
 
+##心得体会
+用了一种特别笨的办法，写的时候就觉得肯定不应该是这种思路。
+但是暂时也只想出来这个思路，慢慢再研究别的更高效的思路。
+
+``` python
+class Solution:
+    def combinationSum(self, candidates, target):
+        """
+        :type candidates: List[int]
+        :type target: int
+        :rtype: List[List[int]]
+        """
+        if not candidates: return [[]]
+        if target == 0:
+            if 0 in candidates: return [[0]]
+            else: return [[]]
+            
+        rdict = {target : [()]}
+        resset = set()
+        
+        while not all(key < 0 for key in rdict.keys()):
+            # print(rdict)
+            temp = {}
+            for key in rdict.keys():
+                if key > 0:
+                    for num in candidates:
+                        for comb in rdict[key]:
+                            # print(comb + (num,))
+                            if temp.get(key - num) is None: temp[key - num] = [comb + (num,)]
+                            else:
+                                temp.get(key - num).append(comb + (num,))                          
+            if temp.get(0):
+                for comb in temp[0]:
+                    resset.add(comb)
+            rdict = temp
+            
+        reslis = []
+        
+        for tup in resset:
+            ls = list(tup)
+            ls.sort()
+            if ls not in reslis: reslis.append(ls)
+        print(reslis)
+        
+        return reslis
 ```
 
 
