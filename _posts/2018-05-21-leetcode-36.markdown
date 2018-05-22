@@ -1,0 +1,94 @@
+---
+layout: post
+title:  "36. Valid Sudoku 解题报告"
+date:   2018-05-21 10:00:00
+categories: leetcode
+---
+
+
+## 题目信息
+
+> * 链接：[Valid Sudoku](https://leetcode.com/problems/valid-sudoku/description/）
+> * 来源：LeetCode
+> * 难度：Medium
+> * 描述：判断一个数独是否可解，要求为每行、每列、每个3*3的方格内不能出现重复的数字
+
+## 解题思路
+把每行每列的数字遍历，按照行，列和方格检查，发现重复出现的数字就return false，否则全部遍历后return true
+
+## 复杂度分析
+时间复杂度O(N) 【N = 81】
+
+## 细节处理
+1. '.'用来表示空格，需要跳过
+2. cube的key的选择，我定义n = int（i/3) + int(j/3) * 3,其中i,j为每个字符的坐标。 int（i/3)表示这个字符在横向归属于第0，1,或2个cube， int（j/3)表示在第0,1,2行，计数上每行增加3个cube。
+
+## AC代码
+
+``` python
+class Solution:
+    def isValidSudoku(self, board):
+        """
+        :type board: List[List[str]]
+        :rtype: bool
+        """
+        
+        if not board: return False
+        vdict = {
+            0: set(),
+            1: set(),
+            2: set(),
+            3: set(),
+            4: set(),
+            5: set(),
+            6: set(),
+            7: set(),
+            8: set()
+                }
+        hdict = {
+            0: set(),
+            1: set(),
+            2: set(),
+            3: set(),
+            4: set(),
+            5: set(),
+            6: set(),
+            7: set(),
+            8: set()
+        }
+        cdict = {
+            0: set(),
+            1: set(),
+            2: set(),
+            3: set(),
+            4: set(),
+            5: set(),
+            6: set(),
+            7: set(),
+            8: set()
+        }
+        
+        for i in range(len(board)):
+            for j in range(len(board[i])):
+                col = int(i / 3)
+                row = int(j / 3)
+                n = col + row * 3
+                if board[i][j] == '.':
+                    pass
+                elif board[i][j] in vdict[i] or board[i][j] in hdict[j] or board[i][j] in cdict[n]:
+                    return False
+                else:
+                    vdict[i].add(board[i][j])
+                    hdict[j].add(board[i][j])
+                    cdict[n].add(board[i][j])
+                print(board[i][j], vdict[i], hdict[j], cdict[n])
+        return True
+
+```
+
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
+
