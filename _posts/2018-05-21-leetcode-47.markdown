@@ -1,0 +1,56 @@
+---
+layout: post
+title:  "47. Permutations 解题报告"
+date:   2018-05-21 23:00:00
+categories: leetcode
+---
+
+
+## 题目信息
+
+> * 链接：[Permutations](https://leetcode.com/problems/permutations-ii/description/)
+> * 来源：LeetCode
+> * 难度：Medium
+> * 描述：找出一组没有重复的数的所有排列情况
+
+## 解题思路
+1. 深度优先搜索，注意去重
+
+## 复杂度分析
+时间复杂度O(N!)，递归深度等于不重复数字个数
+
+## 细节处理
+1. 注意python的参数传递
+
+## AC代码
+
+``` python
+class Solution(object):
+    def dfs(self, sol, can):
+        if len(can) == 0:
+            self.res.append(sol)
+        san = set(can)
+        for c in san:
+            can2 = can[:]
+            sol2 = sol[:]
+            can2.remove(c)
+            sol2.append(c)
+            self.dfs(sol2, can2)
+
+    def permuteUnique(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        self.res = []
+        self.dfs([], nums)
+        return self.res
+     
+```
+
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
+
