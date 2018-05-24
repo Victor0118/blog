@@ -1,0 +1,60 @@
+---
+layout: post
+title:  "48. Rotate Image Solution Report"
+date:   2018-05-22 22:00:00
+categories: leetcode
+---
+
+
+## Problem Information
+
+> * Link：[Rotate Image](https://leetcode.com/problems/rotate-image/description/)
+> * Source：LeetCode
+> * Difficulty：Medium
+> * Description：
+
+```
+You are given an n x n 2D matrix representing an image.
+
+Rotate the image by 90 degrees (clockwise).
+
+You have to rotate the image in-place, which means you have to modify the input 2D matrix directly. DO NOT allocate another 2D matrix and do the rotation.
+
+
+```
+
+## Solution
+1. Each time rotate four values, and find out which values should be the start value
+2. Find out the coordinate transformation pattern
+
+## Complexity Analysis
+Space complexity O(1), time complexity O(n^2)
+
+## Details
+1. It is very easy to exchange four values by Python!
+
+## AC code
+
+``` python
+class Solution(object):
+    def rotate(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: void Do not return anything, modify matrix in-place instead.
+        """
+        n = len(matrix)
+        for i in range(n):
+            for j in range(i, n-i-1):
+                matrix[i][j], matrix[j][n-1-i], matrix[n-1-i][n-1-j], matrix[n-1-j][i] =\
+                matrix[n-1-j][i], matrix[i][j], matrix[j][n-1-i], matrix[n-1-i][n-1-j]
+        return
+                
+     
+```
+
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
+
