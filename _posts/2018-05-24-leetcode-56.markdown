@@ -1,0 +1,81 @@
+---
+layout: post
+title:  "56. Merge Intervals"
+date:   2018-05-24 22:00:00
+categories: leetcode
+---
+
+
+## Problem Information
+
+> * Link：[Merge Intervals](https://leetcode.com/problems/merge-intervals/description/)
+> * Source：LeetCode
+> * Difficulty：Medium
+> * Description： Given a collection of intervals, merge all overlapping intervals.
+
+```
+Input: [[1,3],[2,6],[8,10],[15,18]]
+Output: [[1,6],[8,10],[15,18]]
+
+```
+
+## Solution
+1. solve the merget_two()
+2. merge every two element in the input list
+
+## Complexity Analysis
+Space complexity O(n), time complexity O(n), insert to list for each update, which is not efficient
+
+## Details
+1. decide to merge in-place or externally
+2. be careful with the last element
+
+## AC code
+
+``` python
+# Definition for an interval.
+# class Interval(object):
+#     def __init__(self, s=0, e=0):
+#         self.start = s
+#         self.end = e
+
+class Solution(object):
+    def merge_two(self, int1, int2):
+        if int1.start > int2.start:
+            return self.merge_two(int2, int1)
+        if int1.end >= int2.start:
+            return Interval(int1.start, max(int1.end, int2.end))
+        else:
+            return None
+        
+    def merge(self, intervals):
+        """
+        :type intervals: List[Interval]
+        :rtype: List[Interval]
+        """
+        intervals2 = sorted(intervals, key=lambda x: x.start)
+        i = 0
+        res = []
+        while i < len(intervals2) - 1:
+            # print(i, [(t.start, t.end) for t in intervals2], [(t.start, t.end) for t in [intervals2[i], intervals2[i+1]]])
+            ret =  self.merge_two(intervals2[i], intervals2[i+1])
+            if ret is not None:
+                print(i, ret.start, ret.end)
+                intervals2.pop(i)
+                intervals2.pop(i)
+                intervals2.insert(i, ret)
+            else:
+                res.append(intervals2[i])
+                i += 1
+        if i < len(intervals2):
+            res.append(intervals2[i])
+        return res
+     
+```
+
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
+
