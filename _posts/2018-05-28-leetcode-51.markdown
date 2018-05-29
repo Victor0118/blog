@@ -1,0 +1,101 @@
+---
+layout: post
+title:  "51. Insert Interval 解题报告"
+date:   2018-05-28 21:00:00
+categories: leetcode
+---
+
+
+## 题目信息
+
+> * Link: [Insert Interval](https://leetcode.com/problems/insert-interval/description/)
+> * Source: LeetCode
+> * DifficultyHard
+> * Description:
+
+```
+Given a set of non-overlapping intervals, insert a new interval into the intervals (merge if necessary).
+
+You may assume that the intervals were initially sorted according to their start times.
+```
+
+## Solution
+1. Use two bool variables to record whether we see larger value than the start and the end value of newInterval.
+2. Pay attention to all possible if-else
+
+## Complexity Analysis
+Time complexity: O(N)
+
+## Details
+1. Empty intervals
+2. Start of newInterval is less or larger than any values in the intervals
+
+## AC Code
+
+``` python
+# Definition for an interval.
+# class Interval(object):
+#     def __init__(self, s=0, e=0):
+#         self.start = s
+#         self.end = e
+
+class Solution(object):
+    def insert(self, intervals, newInterval):
+        """
+        :type intervals: List[Interval]
+        :type newInterval: Interval
+        :rtype: List[Interval]
+        """
+        ret = []
+        see_start = False
+        see_end = False
+        for i, inter in enumerate(intervals):
+            if see_end:
+                ret.append(inter)
+            else:
+                if see_start:
+                    if inter.start <= newInterval.end and inter.end >= newInterval.end:
+                        new_end = inter.end
+                        see_end = True
+                        ret.append(Interval(new_start, new_end))
+                    elif inter.start > newInterval.end: 
+                        new_end = newInterval.end
+                        see_end = True
+                        ret.append(Interval(new_start, new_end))
+                        ret.append(inter)
+                elif inter.start <= newInterval.start and inter.end >= newInterval.start:
+                    new_start = inter.start
+                    see_start = True
+                    if inter.start <= newInterval.end and inter.end >= newInterval.end:
+                        new_end = inter.end
+                        see_end = True
+                        ret.append(Interval(new_start, new_end))
+                elif inter.start > newInterval.start:
+                    new_start = newInterval.start
+                    see_start = True
+                    if inter.start <= newInterval.end and inter.end >= newInterval.end:
+                        new_end = inter.end
+                        see_end = True
+                        ret.append(Interval(new_start, new_end))
+                    elif inter.start > newInterval.end:
+                        new_end = newInterval.end
+                        see_end = True
+                        ret.append(Interval(new_start, new_end))
+                        ret.append(inter)
+                else:
+                    ret.append(inter)
+        
+        if not see_start:
+            ret.append(newInterval)
+        elif not see_end:
+            ret.append(Interval(new_start, newInterval.end))
+        return ret
+                    
+```
+
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
+
