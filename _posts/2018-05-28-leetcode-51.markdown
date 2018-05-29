@@ -1,12 +1,12 @@
 ---
 layout: post
-title:  "51. Insert Interval 解题报告"
+title:  "51. Insert Interval Report"
 date:   2018-05-28 21:00:00
 categories: leetcode
 ---
 
 
-## 题目信息
+## Problem Information
 
 > * Link: [Insert Interval](https://leetcode.com/problems/insert-interval/description/)
 > * Source: LeetCode
