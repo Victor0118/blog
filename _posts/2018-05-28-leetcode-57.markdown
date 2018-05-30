@@ -10,7 +10,7 @@ categories: leetcode
 
 > * Link: [Insert Interval](https://leetcode.com/problems/insert-interval/description/)
 > * Source: LeetCode
-> * DifficultyHard
+> * Difficulty: Hard
 > * Description:
 
 ```

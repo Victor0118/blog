@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "60. Permutation Sequence"
+title:  "60. Permutation Sequence Report"
 date:   2018-05-29 22:00:00
 categories: leetcode
 ---
@@ -10,7 +10,7 @@ categories: leetcode
 
 > * Link: [Permutation Sequence](https://leetcode.com/problems/permutation-sequence/description/)
 > * Source: LeetCode
-> * DifficultyHard
+> * Difficulty: Medium
 > * Description: The set \[1,2,3,...,n\] contains a total of n! unique permutations.
 Given n and k, return the kth permutation sequence.
 
