@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "63. Unique Paths II"
+title:  "63. Unique Paths II Report"
 date:   2018-05-30 22:00:00
 categories: leetcode
 ---
@@ -11,15 +11,16 @@ categories: leetcode
 > * Link: [Unique Paths II](https://leetcode.com/problems/unique-paths-ii/description/)
 > * Source: LeetCode
 > * Difficulty: Medium
-> * A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
-
-The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked 'Finish' in the diagram below).
-
-Now consider if some obstacles are added to the grids. How many unique paths would there be?
+> * A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below). The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked 'Finish' in the diagram below). Now consider if some obstacles are added to the grids. How many unique paths would there be?
 
 ```
-Input: n = 3, k = 3
-Output: "213"
+Input:
+[
+  [0,0,0],
+  [0,1,0],
+  [0,0,0]
+]
+Output: 2
 ```
 
 ## Solution
