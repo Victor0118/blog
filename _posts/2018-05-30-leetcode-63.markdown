@@ -1,0 +1,66 @@
+---
+layout: post
+title:  "63. Unique Paths II"
+date:   2018-05-30 22:00:00
+categories: leetcode
+---
+
+
+## Problem Information
+
+> * Link: [Unique Paths II](https://leetcode.com/problems/unique-paths-ii/description/)
+> * Source: LeetCode
+> * Difficulty: Medium
+> * A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
+
+The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked 'Finish' in the diagram below).
+
+Now consider if some obstacles are added to the grids. How many unique paths would there be?
+
+```
+Input: n = 3, k = 3
+Output: "213"
+```
+
+## Solution
+1. A simple DP
+
+## Complexity Analysis
+Time complexity: O(n\*m)
+
+## Details
+1. The input `obstacleGrid` can be [[1]]
+
+## AC Code
+
+``` python
+class Solution(object):
+    def uniquePathsWithObstacles(self, obstacleGrid):
+        """
+        :type obstacleGrid: List[List[int]]
+        :rtype: int
+        """
+        num = []
+        m = len(obstacleGrid)
+        n = len(obstacleGrid[0])
+        for i in range(m):  
+            num.append([0] * n)
+        if obstacleGrid[0][0] == 1:
+            return 0
+        num[0][0] = 1
+        for i in range(m):
+            for j in range(n):
+                if i > 0 and obstacleGrid[i][j] != 1:
+                    num[i][j] += num[i-1][j]
+                if j > 0 and obstacleGrid[i][j] != 1:
+                    num[i][j] += num[i][j-1]
+        return num[m-1][n-1]             
+                    
+```
+
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
+
