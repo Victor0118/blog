@@ -1,0 +1,82 @@
+---
+layout: post
+title:  "65. Edit Distance"
+date:   2018-05-31 22:00:00
+categories: leetcode
+---
+
+
+## Problem Information
+
+> * Link: [Edit Distance](https://leetcode.com/problems/edit-distance/description/)
+> * Source: LeetCode
+> * Difficulty: Hard
+> * Given two words word1 and word2, find the minimum number of operations required to convert word1 to word2.
+
+
+
+```
+You have the following 3 operations permitted on a word:
+
+Insert a character
+Delete a character
+Replace a character
+
+Input: word1 = "horse", word2 = "ros"
+Output: 3
+
+Input: word1 = "intention", word2 = "execution"
+Output: 5
+```
+
+## Solution
+1. A simple DP
+
+## Complexity Analysis
+Time complexity: O(n * m)
+
+## Details
+1. When one string is empty
+2. The initial value of the dp matrix
+3. The index of dp matrix represents the i-th character but the corresponding index in the word string is i-1
+
+## AC Code
+
+``` python
+class Solution(object):
+    def minDistance(self, word1, word2):
+        """
+        :type word1: str
+        :type word2: str
+        :rtype: int
+        """
+        m = len(word1)
+        n = len(word2)
+        if m == 0:
+            return n
+        if n == 0:
+            return m
+        edit = []
+        for i in range(m + 1):
+            edit.append([0] * (n + 1))
+        for i in range(m + 1):
+            for j in range(n + 1):
+                if i == 0:
+                    edit[i][j] = j
+                elif j == 0:
+                    edit[i][j] = i
+                else:
+                    if word1[i-1] == word2[j-1]:
+                        edit[i][j] = edit[i-1][j-1]
+                    else:
+                        edit[i][j] = min(edit[i-1][j]+1, edit[i][j-1]+1, edit[i-1][j-1]+1)
+        return edit[m][n]
+
+```
+
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
+
