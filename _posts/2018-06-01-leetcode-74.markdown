@@ -29,7 +29,7 @@ Output: true
 1. Start from the right top corner or left bottom corner and do binary search
 
 ## Complexity Analysis
-Time complexity: O(log(N * M))
+Time complexity: O(M + N). There might be better solutions. Will take a look later.
 
 ## Details
 1. The matrix could be []
