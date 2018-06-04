@@ -73,7 +73,8 @@ class Solution:
 > * Source: LeetCode
 > * Difficulty: Medium
 
-> * Description
+> * Description:
+
 ```
 Let's call any (contiguous) subarray B (of A) a mountain if the following properties hold:
 
@@ -159,7 +160,8 @@ class Solution:
 > * Link: [Hand of Straights](https://leetcode.com/contest/weekly-contest-87/problems/hand-of-straights/)
 > * Source: LeetCode
 > * Difficulty: Medium
-> * Description
+> * Description:
+
 ```
 Alice has a hand of cards, given as an array of integers.
 
