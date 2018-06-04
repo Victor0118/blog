@@ -11,10 +11,9 @@ categories: leetcode
 > * Link: [Backspace String Compare](https://leetcode.com/problems/backspace-string-compare/description/)
 > * Source: LeetCode
 > * Difficulty: Easy
-> * Given two strings S and T, return if they are equal when both are typed into empty text editors. # means a backspace character.
-
+> * Description:
 ```
-
+Given two strings S and T, return if they are equal when both are typed into empty text editors. # means a backspace character.
 ```
 
 ## Solution
@@ -73,7 +72,10 @@ class Solution:
 > * Link: [Longest Mountain in Array](https://leetcode.com/contest/weekly-contest-87/problems/longest-mountain-in-array/)
 > * Source: LeetCode
 > * Difficulty: Medium
-> * Let's call any (contiguous) subarray B (of A) a mountain if the following properties hold:
+
+> * Description
+```
+Let's call any (contiguous) subarray B (of A) a mountain if the following properties hold:
 
 	B.length >= 3
 	There exists some 0 < i < B.length - 1 such that B[0] < B[1] < ... B[i-1] < B[i] > B[i+1] > ... > B[B.length - 1]
@@ -82,9 +84,6 @@ class Solution:
 	Given an array A of integers, return the length of the longest mountain. 
 
 	Return 0 if there is no mountain.
-
-```
-
 ```
 
 ## Solution
@@ -160,12 +159,13 @@ class Solution:
 > * Link: [Hand of Straights](https://leetcode.com/contest/weekly-contest-87/problems/hand-of-straights/)
 > * Source: LeetCode
 > * Difficulty: Medium
-> * Alice has a hand of cards, given as an array of integers.
+> * Description
+```
+Alice has a hand of cards, given as an array of integers.
 
-	Now she wants to rearrange the cards into groups so that each group is size W, and consists of W consecutive cards.
+Now she wants to rearrange the cards into groups so that each group is size W, and consists of W consecutive cards.
 
-	Return true if and only if she can.
-
+Return true if and only if she can.
 ```
 
 ```
