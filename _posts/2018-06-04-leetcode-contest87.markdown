@@ -36,35 +36,77 @@ class Solution:
         :type T: str
         :rtype: bool
         """
-        
         if not S or not T:
-            return True
-        
-        s = ''
-        t = ''
+            return False
+               
+        s = []
+        t = []
         
         for i in range(len(S)):
             if S[i] != '#':
-                s += S[i]
+                s.append(S[i])
             else:
-                if s == '':
+                if s == []:
                     pass
                 else:
-                    s = s[:-1]
+                    s.pop()
         
         for j in range(len(T)):
             if T[j] != '#':
-                t += T[j]
+                t.append(T[j])
             else:
-                if t =='':
+                if t == []:
                     pass
                 else:
-                    t = t[:-1]
-                    
-        print(s, t)
-        
+                    t.pop()
+					
         return (s == t)
                     
+```
+
+## AC code
+If function pop() is forbiden, how to achieve the save result with append() only?
+And use join() to avoid potential error caused by list structure.
+
+```python
+class Solution:
+    def backspaceCompare(self, S, T):
+        """
+        :type S: str
+        :type T: str
+        :rtype: bool
+        """
+        if not S or not T:
+            return False
+               
+        S = S[::-1]
+        T = T[::-1]
+        
+        back_count = 0
+        s = []
+        t = []
+        
+        for char in S:
+            if char == '#':
+                back_count += 1
+            else:
+                if back_count == 0:
+                    s.append(char)
+                else:
+                    back_count -= 1
+                    
+        back_count = 0            
+                    
+        for char in T:
+            if char == '#':
+                back_count += 1
+            else:
+                if back_count == 0:
+                    t.append(char)
+                else:
+                    back_count -= 1
+        
+        return ''.join(s) == ''.join(t)
 ```
 
 ## Problem Information
@@ -168,8 +210,6 @@ Alice has a hand of cards, given as an array of integers.
 Now she wants to rearrange the cards into groups so that each group is size W, and consists of W consecutive cards.
 
 Return true if and only if she can.
-```
-
 ```
 
 ## Solution
