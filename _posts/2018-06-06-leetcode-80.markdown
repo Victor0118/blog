@@ -1,0 +1,64 @@
+---
+layout: post
+title:  "80. Remove Duplicates from Sorted Array II"
+date:   2018-06-06 23:00:00
+categories: leetcode
+---
+
+
+## Problem Information
+
+> * Link: [Remove Duplicates from Sorted Array II](https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/description/)
+> * Source: LeetCode
+> * Difficulty: Medium
+> * Given a sorted array nums, remove the duplicates in-place such that duplicates appeared at most twice and return the new length. Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
+```
+Given nums = [0,0,1,1,1,1,2,3,3],
+
+Your function should return length = 7, with the first seven elements of nums being modified to 0, 0, 1, 1, 2, 3 and 3 respectively.
+
+It doesn't matter what values are set beyond the returned length.
+```
+
+## Solution
+1. One pointer for the end of new array
+2. Pop out duplicate numbers at the end
+
+## Complexity Analysis
+Time complexity: O(N). Space complexity: O(1).
+
+
+## AC Code
+
+``` python
+class Solution(object):
+    def removeDuplicates(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        ind = 0
+        count = 0
+        pre = ""
+        for i, n in enumerate(nums):
+            if ind < i:
+                nums[i], nums[ind] = nums[ind], nums[i]
+            if n == pre:
+                count += 1
+                if count < 2:
+                    ind += 1
+            else:
+                count = 0
+                ind += 1
+                pre = n
+            
+        while len(nums) > ind:
+            nums.pop()
+```
+
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
+
