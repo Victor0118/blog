@@ -1,0 +1,91 @@
+---
+layout: post
+title:  "81. Search in Rotated Sorted Array II"
+date:   2018-06-07 23:00:00
+categories: leetcode
+---
+
+
+## Problem Information
+
+> * Link: [Search in Rotated Sorted Array II](https://leetcode.com/problems/search-in-rotated-sorted-array-ii/description/)
+> * Source: LeetCode
+> * Difficulty: Medium
+> * Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.
+You are given a target value to search. If found in the array return true, otherwise return false.
+```
+Input: nums = [2,5,6,0,0,1,2], target = 0
+Output: true
+
+Input: nums = [2,5,6,0,0,1,2], target = 3
+Output: false
+```
+This is a follow up problem to Search in Rotated Sorted Array, where nums may contain duplicates.
+
+
+## Solution
+* If it is already a sorted array, do binary search
+* If not, check the relation between nums[i1], nums[mid], nums[i2] and target
+
+## Complexity Analysis
+Time complexity: O(N). Space complexity: O(1).
+
+## Edge Case
+1. When nums[i1] == nums[i2] == nums[mid], we can only do linear search to find the target
+2. Pay attention to the equal condition when using if statement
+3. The nums list is empty
+4. Target is the first or the last element of the list
+
+## AC Code
+
+``` python
+class Solution:
+    def search(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: bool
+        """
+        i1 = 0
+        i2 =  len(nums) - 1
+        if len(nums) == 0:
+            return False
+        if nums[i1] == target or nums[i2] == target:
+            return True
+        while True:
+            if i2 - i1 < 2:
+                if nums[i1] == target or nums[i2] == target:
+                    return True
+                return False
+            mid = int((i1 + i2) / 2)
+            if nums[mid] == target:
+                    return True
+            if nums[i1] < nums[i2]:
+                if target > nums[mid]:
+                    i1 = mid
+                else:
+                    i2 = mid
+            else:
+                if nums[i1] == nums[mid] and nums[i2] == nums[mid]:
+                    if target in nums[i1:i2+1]:
+                        return True
+                    return False
+                elif nums[i1] > nums[mid] and nums[mid] <= nums[i2]:
+                    if nums[i1] < target or target < nums[mid]:
+                        i2 = mid
+                    else:
+                        i1 = mid
+                elif nums[i1] <= nums[mid]:
+                    if nums[i1] < target and target < nums[mid]:
+                        i2 = mid
+                    else:
+                        i1 = mid
+        return False
+```
+
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
+
