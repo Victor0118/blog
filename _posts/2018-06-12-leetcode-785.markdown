@@ -1,0 +1,73 @@
+---
+layout: post
+title:  "785. Is Graph Bipartite?"
+date:   2018-06-12 23:00:00
+categories: leetcode
+---
+
+
+## Problem Information
+
+> * Link: [Is Graph Bipartite?](https://leetcode.com/problems/is-graph-bipartite/description/)
+> * Source: LeetCode
+> * Difficulty: Medium
+> * Description:
+
+```
+Given an undirected graph, return true if and only if it is bipartite.
+
+Recall that a graph is bipartite if we can split it's set of nodes into two independent subsets A and B such that every edge in the graph has one node in A and another node in B.
+
+The graph is given in the following form: graph[i] is a list of indexes j for which the edge between nodes i and j exists.  Each node is an integer between 0 and graph.length - 1.  There are no self edges or parallel edges: graph[i] does not contain i, and it doesn't contain any element twice.
+```
+
+Note:
+* graph will have length in range [1, 100].
+* graph[i] will contain integers in range [0, graph.length - 1].
+* graph[i] will not contain i or duplicate values.
+* The graph is undirected: if any element j is in graph[i], then i will be in graph[j].
+
+## Solution
+* DFS + Coloring
+
+## Complexity Analysis
+Time complexity: O(N). Space complexity: O(1).
+
+## Edge Case
+1. How to initialize the color?
+2. Is it necessary to do DFS for each node? Although it does not affect the performance because most nodes have been colored.
+
+## AC Code
+
+``` python
+class Solution:
+    def dfs(self, graph, i, c):
+        for j in graph[i]:
+            if self.colors[j] == -1:
+                self.colors[j] = c
+                if not self.dfs(graph, j, 1 - c):
+                    return False
+            elif self.colors[j] != c:
+                return False
+        return True
+    
+    def isBipartite(self, graph):
+        """
+        :type graph: List[List[int]]
+        :rtype: bool
+        """
+        n = len(graph)
+        self.colors = [-1] * n
+        for i in range(n):
+            if not self.dfs(graph, i, 1) and not self.dfs(graph, i, 0):
+                return False
+        return True
+            
+```
+
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
+
