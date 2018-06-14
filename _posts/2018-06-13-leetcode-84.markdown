@@ -1,0 +1,71 @@
+---
+layout: post
+title:  "84. Largest Rectangle in Histogram"
+date:   2018-06-14 01:00:00
+categories: leetcode
+---
+
+
+## Problem Information
+
+> * Link: [Largest Rectangle in Histogram](https://leetcode.com/problems/largest-rectangle-in-histogram/description/)
+> * Source: LeetCode
+> * Difficulty: Hard
+> * Description:
+
+```
+Given n non-negative integers representing the histogram's bar height where the width of each bar is 1, find the area of largest rectangle in the histogram.
+
+Input: [2,1,5,6,2,3]
+Output: 10
+```
+
+## Solution
+* Maintain a stack storing the bar that lower than the current bar
+* If the bar on the top of the stack is higher than current bar, pop it out and compute the largest rectangle with the same height of it.
+* Get the maximum heights of all rectangles computed
+
+## Complexity Analysis
+Time complexity: O(N). Space complexity: O(N).
+
+## Edge Case
+1. The initial state of the stack
+2. The index might be out of range
+
+## AC Code
+
+``` python
+class Solution(object):
+    def largestRectangleArea(self, heights):
+        """
+        :type heights: List[int]
+        :rtype: int
+        """
+        stack = [(-1, 0)]
+        maxH = 0
+        n = len(heights)
+        for i in range(n):
+            while len(stack) != 0:
+                if stack[-1][1] > heights[i]:
+                    height = (i - stack[-2][0] - 1) * stack[-1][1]
+                    if height > maxH:
+                        maxH = height
+                    del[stack[-1]]
+                else:
+                    break
+            stack.append((i, heights[i]))
+        
+        while len(stack) >= 2:
+            height = (n - stack[-2][0] - 1) * stack[-1][1]
+            if height > maxH:
+                maxH = height
+            del[stack[-1]]
+        return maxH
+```
+
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
+
