@@ -1,0 +1,61 @@
+---
+layout: post
+title:  "48. Rotate Image"
+date:   2018-06-13 23:00:00
+categories: leetcode
+---
+
+
+## Problem Information
+
+> * Link: [Rotate Image](https://leetcode.com/problems/rotate-image/description/)
+> * Source: LeetCode
+> * Difficulty: Medium
+> * Description:
+
+```
+You are given an n x n 2D matrix representing an image.
+
+Rotate the image by 90 degrees (clockwise).
+
+Note:
+
+You have to rotate the image in-place, which means you have to modify the input 2D matrix directly. DO NOT allocate another 2D matrix and do the rotation.
+```
+
+## Solution
+* Cut the square matrix into four triangle with the diagonal lines, rotate and replace the triangle to rotate the matrix.
+* Find the matching rules and switch position of corresponding points.
+
+## Complexity Analysis
+Time complexity: O(N^2). Space complexity: O(1).
+
+## Edge Case
+1. Be careful about the ending edge, because it is shared as the beginning edge of next triangle
+2. Consider about two cases: N is odd and N is even. The solution is same for both cases: 
+	* When N is even, the triangle is (N / 2) height, with N as the longest edge, each inner line is two points shorter than its outer line. 
+	* When N is odd, the triangle is (N + 1) / 2 height, but the top point is shared by four triangles. So it doesn't move. 
+
+## AC Code
+
+``` python
+class Solution:
+    def rotate(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: void Do not return anything, modify matrix in-place instead.
+        """
+        
+        n = len(matrix)
+        for i in range(int(n / 2)):
+            for j in range (i, n - 1 - i):
+                matrix[i][j], matrix[j][n - 1 - i], matrix[n - 1 - i][n - 1 - j], matrix[n - 1 - j][i] = matrix[n - 1 - j][i],  matrix[i][j], matrix[j][n - 1 - i], matrix[n - 1 - i][n - 1 - j]
+            
+```
+
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
+

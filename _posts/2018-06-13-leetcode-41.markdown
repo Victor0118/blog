@@ -1,0 +1,79 @@
+---
+layout: post
+title:  "41. First Missing Positive"
+date:   2018-06-13 23:00:00
+categories: leetcode
+---
+
+
+## Problem Information
+
+> * Link: [First Missing Positive](https://leetcode.com/problems/first-missing-positive/description/)
+> * Source: LeetCode
+> * Difficulty: Hard (?)
+> * Description:
+
+```
+Given an unsorted integer array, find the smallest missing positive integer.
+
+Example:
+
+Input: [1,2,0]
+Output: 3
+
+Input: [3,4,-1,1]
+Output: 2
+
+Input: [7,8,9,11,12]
+Output: 1
+```
+
+Note:
+
+* Your algorithm should run in O(n) time and uses constant extra space.
+
+## Solution
+* Sort the number list and define the smallest positive integer as 1
+* If there is any negative number or zero, pass
+* When it starts being positive, check the first one, if it greater than 1, the result is 1, because the number list skips 1
+* Increase the flag positive integer until the element from list mismatches with the flag.
+
+
+## Complexity Analysis
+Time complexity: O(N Log N). Space complexity: O(1).
+(I know I failed to meet the requirement)
+
+## Edge Case
+Haven't thought of other edge cases.
+
+## AC Code
+```
+class Solution:
+    def firstMissingPositive(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        
+        if not nums:
+            return 1
+        
+        nums.sort()
+        
+        i = 1
+        
+        for num in nums:
+            if num < i:
+                continue
+            elif num == i:
+                i += 1
+            else:
+                return i
+        return i
+            
+```
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/

@@ -1,0 +1,78 @@
+---
+layout: post
+title:  "49. Group Anagrams"
+date:   2018-06-13 23:00:00
+categories: leetcode
+---
+
+
+## Problem Information
+
+> * Link: [Group Anagrams](https://leetcode.com/problems/group-anagrams/description/)
+> * Source: LeetCode
+> * Difficulty: Medium
+> * Description:
+
+```
+Given an array of strings, group anagrams together.
+
+Example:
+
+Input: ["eat", "tea", "tan", "ate", "nat", "bat"],
+Output:
+[
+  ["ate","eat","tea"],
+  ["nat","tan"],
+  ["bat"]
+]
+```
+
+Note:
+
+* All inputs will be in lowercase.
+* The order of your output does not matter.
+
+## Solution
+* Use list to resort the word, make sure letters are aligned in the same order (Set should also work for this case)
+* Use dictionary to categorize, key as letter combination, value as a list including all acceptable words.
+
+## Complexity Analysis
+Time complexity: O(N). Space complexity: O(N).
+
+## Edge Case
+1. Empty input?
+2. Haven't thought of other edge cases.
+
+## AC Code
+
+``` python
+class Solution:
+    def groupAnagrams(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: List[List[str]]
+        """
+        if not strs:
+            return [[]]
+        
+        ana = {}
+        
+        for word in strs:
+            letters = list(word)
+            letters.sort()
+            letters = ''.join(letters)
+            
+            if letters in ana.keys():
+                ana[letters].append(word)
+            else:
+                ana[letters] = [word]            
+            
+        return list(ana.values())
+            
+```
+
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
