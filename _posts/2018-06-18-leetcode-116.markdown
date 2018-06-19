@@ -1,0 +1,108 @@
+---
+layout: post
+title:  "116. Populating Next Right Pointers in Each Node"
+date:   2018-06-16 23:00:00
+categories: leetcode
+---
+
+
+## Problem Information
+
+> * Link: [Populating Next Right Pointers in Each Node](https://leetcode.com/problems/populating-next-right-pointers-in-each-node/description/)
+> * Source: LeetCode
+> * Difficulty: Medium
+> * Description: Given a binary tree
+
+
+```
+
+struct TreeLinkNode {
+  TreeLinkNode *left;
+  TreeLinkNode *right;
+  TreeLinkNode *next;
+}
+
+```
+Populate each next pointer to point to its next right node. If there is no next right node, the next pointer should be set to NULL.
+
+Initially, all next pointers are set to NULL.
+
+#### Note:
+
+* You may only use constant extra space.
+* Recursive approach is fine, implicit stack space does not count as extra space for this problem.
+* You may assume that it is a perfect binary tree (ie, all leaves are at the same level, and every parent has two children).
+
+```
+Given the following perfect binary tree,
+     1
+   /  \
+  2    3
+ / \  / \
+4  5  6  7
+After calling your function, the tree should look like:
+
+     1 -> NULL
+   /  \
+  2 -> 3 -> NULL
+ / \  / \
+4->5->6->7 -> NULL
+```
+
+## Solution
+* Level-order traversal
+* 
+
+## Complexity Analysis
+Time complexity: O(N). Space complexity: O(N).
+
+## Edge Case
+1. root is None
+
+## Thoughts
+1. Pay attention to the difference between left and right
+2. Do not connect the end node of current row to the next row
+3. How to do level-order traversal in python better?
+
+## AC Code
+
+``` python
+# Definition for binary tree with next pointer.
+# class TreeLinkNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+#         self.next = None
+
+class Solution:
+    # @param root, a tree link node
+    # @return nothing
+    def connect(self, root):
+        if root is None:
+            return None
+        queue = [root]
+        
+        while len(queue) > 0:
+            new_queue = []
+            last_tmp = None
+            while len(queue) > 0:
+                tmp = queue[0]
+                del(queue[0])
+                if last_tmp is not None:
+                    last_tmp.next = tmp
+                last_tmp = tmp
+                if tmp.right is not None:
+                    new_queue.append(tmp.left)
+                    new_queue.append(tmp.right)
+            queue.extend(new_queue)
+            last_tmp.next = None
+
+```
+
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
+
