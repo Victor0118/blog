@@ -1,0 +1,86 @@
+---
+layout: post
+title:  "856. Score of Parentheses"
+date:   2018-06-24 22:00:00
+categories: leetcode
+---
+
+
+## Problem Information
+
+> * Link: [Score of Parentheses](https://leetcode.com/problems/score-of-parentheses/description/)
+> * Source: LeetCode
+> * Difficulty: Medium
+> * Description: Given a balanced parentheses string S, compute the score of the string based on the following rule:
+
+* () has score 1
+* AB has score A + B, where A and B are balanced parentheses strings.
+* (A) has score 2 * A, where A is a balanced parentheses string.
+
+Initially, all next pointers are set to NULL.
+
+```
+Example 1:
+
+Input: "()"
+Output: 1
+Example 2:
+
+Input: "(())"
+Output: 2
+
+Example 3:
+
+Input: "()()"
+Output: 2
+Example 4:
+
+Input: "(()(()))"
+Output: 6
+```
+
+## Solution
+* Maintain a stack to record the score and the left parentheses
+
+## Complexity Analysis
+Time complexity: O(N). Space complexity: O(N).
+
+## Thoughts
+1. Summary of problems that can be solved by maintaining a stack 
+
+## AC Code
+
+``` python
+class Solution(object):
+    def scoreOfParentheses(self, S):
+        """
+        :type S: str
+        :rtype: int
+        """
+        stack = []
+        for s in S:
+            if s == "(":
+                stack.append(s)
+            else:
+                tmp = stack[-1]
+                if tmp == "(":
+                    del[stack[-1]]
+                    stack.append(1)
+                else:
+                    num = 0
+                    while tmp != "(":
+                        num += tmp
+                        del[stack[-1]]
+                        tmp = stack[-1]
+                    del[stack[-1]]
+                    stack.append(num * 2)
+        return sum(stack)
+
+```
+
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
+

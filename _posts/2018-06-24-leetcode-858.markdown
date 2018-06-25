@@ -1,0 +1,83 @@
+---
+layout: post
+title:  "858. Mior Reflection"
+date:   2018-06-24 22:00:00
+categories: leetcode
+---
+
+
+## Problem Information
+
+> * Link: [Mirror Reflection](https://leetcode.com/problems/mirror-reflection/description/)
+> * Source: LeetCode
+> * Difficulty: Medium
+> * Description: 
+
+
+```
+There is a special square room with mirrors on each of the four walls.  Except for the southwest corner, there are receptors on each of the remaining corners, numbered 0, 1, and 2.
+
+The square room has walls of length p, and a laser ray from the southwest corner first meets the east wall at a distance q from the 0th receptor.
+
+Return the number of the receptor that the ray meets first.  (It is guaranteed that the ray will meet a receptor eventually.)
+
+
+Input: p = 2, q = 1
+Output: 2
+Explanation: The ray meets receptor 2 the first time it gets reflected back to the left wall.
+
+Note:
+
+1 <= p <= 1000
+0 <= q <= p
+```
+
+## Solution
+1. Get the LCM (Lowest Common Multiple) of p and q (k = n1 * p = n2 * q)
+2. Check the odevity of the n1 and n2
+
+## Complexity Analysis
+Time complexity: ?. Space complexity: O(1).
+
+## AC Code
+
+``` python
+class Solution(object):
+    def lcm(self, x, y):
+        
+       if x > y:
+           greater = x
+       else:
+           greater = y
+
+       while(True):
+           if((greater % x == 0) and (greater % y == 0)):
+               lcm = greater
+               break
+           greater += 1
+
+       return lcm
+
+    def mirrorReflection(self, p, q):
+        """
+        :type p: int
+        :type q: int
+        :rtype: int
+        """
+        l = self.lcm(p, q)
+        n1 = l / p 
+        n2 = l / q
+        if n1 % 2 and n2 % 2:
+            return 1
+        if n1 % 2 and n2 % 2 == 0:
+            return 2
+        if n1 % 2 == 0 and n2 % 2:
+            return 0
+```
+
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
+
