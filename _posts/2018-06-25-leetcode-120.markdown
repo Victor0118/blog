@@ -1,0 +1,75 @@
+---
+layout: post
+title:  "120. Triangle"
+date:   2018-06-25 23:00:00
+categories: leetcode
+---
+
+
+## Problem Information
+
+> * Link: [Triangle](https://leetcode.com/problems/triangle/description/)
+> * Source: LeetCode
+> * Difficulty: Medium
+> * Description: Given a triangle, find the minimum path sum from top to bottom. Each step you may move to adjacent numbers on the row below.
+
+```
+For example, given the following triangle
+
+[
+     [2],
+    [3,4],
+   [6,5,7],
+  [4,1,8,3]
+]
+The minimum path sum from top to bottom is 11 (i.e., 2 + 3 + 5 + 1 = 11).
+
+Note:
+
+Bonus point if you are able to do this using only O(n) extra space, where n is the total number of rows in the triangle.
+```
+
+## Solution
+* DP
+* Save space in DP 
+
+## Complexity Analysis
+Time complexity: O(N^2). Space complexity: O(N).
+
+## Details
+1. ListA = ListB is a shallow copy
+
+## AC Code
+
+``` python
+class Solution(object):
+    def minimumTotal(self, triangle):
+        """
+        :type triangle: List[List[int]]
+        :rtype: int
+        """
+        n = len(triangle[-1])
+        min_sum = [0] * n
+        min_sum2 = [0] * n
+        for i in range(len(triangle)):
+            for j in range(len(triangle[i])):
+                if i == 0:
+                    min_sum2[j] = triangle[i][j]
+                else:
+                    if j == 0:
+                        min_sum2[j] = min_sum[j] + triangle[i][j]
+                    elif j == len(triangle[i]) - 1:
+                        min_sum2[j] = min_sum[j-1] + triangle[i][j]
+                    else:
+                        min_sum2[j] = min(min_sum[j-1], min_sum[j]) + triangle[i][j]
+            for j in range(len(triangle[i])):
+                min_sum[j] = min_sum2[j]
+        return min(min_sum)
+```
+
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
+
